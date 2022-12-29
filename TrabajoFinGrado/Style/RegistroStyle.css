@@ -1,0 +1,76 @@
+﻿
+/*@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&family=Roboto+Mono:ital,wght@0,500;1,400&family=Roboto:ital,wght@0,700;1,100;1,400&family=Source+Code+Pro&display=swap');
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(#141e30, #243b55);
+}*/
+
+/*moviles*/
+/*@media only screen and (min-width:1px) {
+*/ /*.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    max-width: 350px;
+    padding: 30px;
+    transform: translate(-50%, -50%);
+    background: rgba(41, 37, 37, 0.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
+    border-radius: 15px;
+}
+
+
+h3 {*/
+    /*margin y padding para cuadrar el texto */
+    /*margin: 0 0 30px;
+    padding: 0;*/
+    /*color y alineacion del texto*/
+    /*color: #fff;
+    text-align: center;
+    font-family: 'Source Code Pro', monospace;
+}
+
+.login-box .user-box {
+    position: relative;
+}*/
+
+/*mofidicamos los inputs para introducir username y psw*/
+/*input {*/
+    /*edita anchura del input*/
+    /*width: 100%;*/
+    /*espacio entre inputs*/
+    /*padding: 5px 0;
+    font-size: 15px;
+    margin-bottom: 20px;*/
+    /*le quitamos el border a los inputs para que esten chulos*/
+    /*border: none;*/
+    /*para que al escirbir no se vean bordes*/
+    /*outline: none;*/
+    /*ponemos el borde de abajo nada mas*/
+    /*border-bottom: 1px solid #fff;
+    color: #fff;*/
+    /*fondo del input transparente, mas chulito*/
+    /*background: transparent;
+}
+
+label {
+    font-size: 16px;*/
+    /*color del texto*/
+    /*color: #fff;
+}
+
+button {
+    padding-top: 5px;
+}
+.error{
+    color:red;
+}*/
