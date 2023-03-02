@@ -31,43 +31,43 @@
     </div>
     <div class="navigation">
         <div class="nav-center container d-flex">
-            <a href="index.html" class="logo">
+            <a href="Index.aspx" class="logo">
                 <h1>MadEvents</h1>
             </a>
 
-            <ul class="nav-list d-flex">
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="product.html" class="nav-link">Events</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#terms" class="nav-link">Terms</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
-                <li class="icons d-flex">
-                    <a href="login.html" class="icon">
-                        <i class="bx bx-user"></i>
-                    </a>
-                    <div class="icon">
-                        <i class="bx bx-search"></i>
-                    </div>
-
-                    <a href="cart.html" class="icon">
-                        <i class="bx bx-cart"></i>
-                        <span class="d-flex">0</span>
-                    </a>
-                </li>
-            </ul>
+                    <ul class="nav-list d-flex">
+          <li class="nav-item">
+            <a href="Index.aspx" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="product.html" class="nav-link">Events</a>
+          </li>
+          <li class="nav-item">
+            <a href="#terms" class="nav-link">Maps</a>
+          </li>
+          <li class="nav-item">
+            <a href="#about" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link">Contact</a>
+          </li>
+          <li class="icons d-flex">
+            <a href="Index.aspx" class="icon">
+              <i class="bx bx-user"></i>
+            </a>
+            <div class="icon">
+              <i class="bx bx-search"></i>
+            </div>
+            
+            <a href="cart.html" class="icon">
+              <i class="bx bx-cart"></i>
+              <span class="d-flex">0</span>
+            </a>
+          </li>
+        </ul>
 
             <div class="icons d-flex">
-                <a href="login.html" class="icon">
+                <a href="Perfil.aspx" class="icon">
                     <i class="bx bx-user"></i>
                 </a>
                 <div class="icon">
@@ -121,39 +121,36 @@
                     </div>
                 </div>
                 <br />
-                <asp:Button ID="Boton_Registro" class="btn waves-effect waves-light" runat="server" Text="Submit" OnClick="Boton_Registro_Click" Visible="true" />
+                <asp:Button ID="Boton_Cancelar" class="btn waves-light"  runat="server" Text="Cancelar" OnClick="Boton_Cancelar_Click" Visible="true" />
+                &nbsp; &nbsp;
+                <asp:Button ID="Boton_Registro" class="btn waves-light"  runat="server" Text="Submit" OnClick="Boton_Registro_Click" Visible="true" />
                 <br />
-                <asp:Button ID="Boton_Ir_Login" class="btn waves-effect waves-light" runat="server" Text="Login" OnClick="Boton_Ir_Login_Click" Visible="false" />
+                <asp:Button ID="Boton_Ir_Login" class="btn waves-light" runat="server" Text="Login" OnClick="Boton_Ir_Login_Click" Visible="false" />
         </form>
         </div>
     </div>
 
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="row">
-            <div class="col d-flex">
-                <h4>INFORMATION</h4>
-                <a href="">About us</a>
-                <a href="">Contact Us</a>
-                <a href="">Term & Conditions</a>
-                <a href="">Shipping Guide</a>
-            </div>
-            <div class="col d-flex">
-                <h4>USEFUL LINK</h4>
-                <a href="">Online Store</a>
-                <a href="">Customer Services</a>
-                <a href="">Promotion</a>
-                <a href="">Top Brands</a>
-            </div>
-            <div class="col d-flex">
-                <span><i class="bx bxl-facebook-square"></i></span>
-                <span><i class="bx bxl-instagram-alt"></i></span>
-                <span><i class="bx bxl-github"></i></span>
-                <span><i class="bx bxl-twitter"></i></span>
-                <span><i class="bx bxl-pinterest"></i></span>
-            </div>
+        <footer class="footer">
+      <div class="row">
+        <div class="col d-flex">
+          <h4>INFORMATION</h4>
+          <a href="">About us</a>
+          <a href="">Contact Us</a>
+          <a href="">Term & Conditions</a>
         </div>
+        <div class="col d-flex">
+          <h4>USEFUL LINK</h4>
+          <a href="">Events</a>
+          <a href="">Maps</a>
+          
+        </div>
+        <div class="col d-flex">
+          <span><i class="bx bxl-github"></i></span>
+          <span><i class="bx bxl-linkedin"></i></span>
+        </div>
+      </div>
     </footer>
 
 </body>
@@ -377,7 +374,7 @@ Navigation
     }
 
     /*mofidicamos los inputs para introducir username y psw*/
-    #tbUsuario, #tbPassword, #tbApellidos, #tbNombre, #tbEmail#tbPasswordConfirmed {
+    #tbUsuario, #tbPassword, #tbApellidos, #tbNombre, #tbEmail,#tbPasswordConfirmed {
         /*edita anchura del input*/
         width: 100%;
         /*espacio entre inputs*/

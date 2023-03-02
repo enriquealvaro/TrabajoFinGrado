@@ -6,6 +6,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web;
+using System.Web.Mail;
+using System.Net.Mail;
+using System.Net;
 
 namespace TrabajoFinGrado
 {
@@ -81,8 +85,39 @@ namespace TrabajoFinGrado
 
                         lblAcierto.Text = "Usuario creado correctamente!";
 
+                        //Envio el email
+
+                        //try
+                        //{
+
+                        //    // Crea una nueva instancia de la clase SmtpClient y especifica el servidor SMTP de Hotmail y el puerto que se utilizarán para enviar el correo electrónico.
+                        //    SmtpClient client = new SmtpClient("204.79.197.212", 5870);
+
+                        //    // Especifica las credenciales de la cuenta de correo electrónico que se utilizará para enviar el mensaje.
+                        //    client.Credentials = new NetworkCredential("quiquejr.alvaro@hotmail.com", "Quique13");
+
+                        //    // Habilita la autenticación TLS (Transport Layer Security) para proteger la transmisión de datos.
+                        //    client.EnableSsl = true;
+
+                        //    // Crea una nueva instancia de la clase MailMessage y especifica el remitente, destinatario y el contenido del mensaje.
+                        //    System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage("quiquejr.alvaro@hotmail.com", email.ToString(),
+                        //    "Prueba1", "Prueba2");
+
+                        //    // Envía el mensaje.
+                        //    client.Send(message);
+                        //}
+                        //catch (Exception ex)
+                        //{
+                        //    Console.WriteLine("Error al enviar el mensaje: " + ex.Message);
+                        //}
+
+
+
+
+
                         //Se quitara todos los inputs y aparecerá un boton para ir al texto
                         theDiv.Visible = false;
+                        Boton_Cancelar.Visible = false;
                         Boton_Registro.Visible = false;
                         Boton_Ir_Login.Visible = true;
 
@@ -149,6 +184,16 @@ namespace TrabajoFinGrado
             Response.Redirect("Login.Aspx");
         }
 
+        protected void enviarEmail (object sender, EventArgs e)
+        {
 
+            
+        }
+
+        protected void Boton_Cancelar_Click(object sender, EventArgs e)
+        {
+         Response.Redirect("Login.Aspx");
+
+        }
     }
 }

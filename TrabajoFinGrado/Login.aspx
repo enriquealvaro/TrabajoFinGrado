@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
     <script src="js/materialize.js"></script>
     <script src="js/materialize.min.js"></script>
-    <script src = "js/nav.js"></script>
 
 </head>
 
@@ -32,17 +31,17 @@
     </div>
     <div class="navigation">
       <div class="nav-center container d-flex">
-        <a href="index.html" class="logo"><h1>MadEvents</h1></a>
+        <a href="Index.aspx" class="logo"><h1>MadEvents</h1></a>
 
         <ul class="nav-list d-flex">
           <li class="nav-item">
-            <a href="/" class="nav-link">Home</a>
+            <a href="Index.aspx" class="nav-link">Home</a>
           </li>
           <li class="nav-item">
             <a href="product.html" class="nav-link">Events</a>
           </li>
           <li class="nav-item">
-            <a href="#terms" class="nav-link">Terms</a>
+            <a href="#terms" class="nav-link">Maps</a>
           </li>
           <li class="nav-item">
             <a href="#about" class="nav-link">About</a>
@@ -51,7 +50,7 @@
             <a href="#contact" class="nav-link">Contact</a>
           </li>
           <li class="icons d-flex">
-            <a href="login.html" class="icon">
+            <a href="Index.aspx" class="icon">
               <i class="bx bx-user"></i>
             </a>
             <div class="icon">
@@ -66,7 +65,7 @@
         </ul>
 
         <div class="icons d-flex">
-          <a href="login.html" class="icon">
+          <a href="Perfil.aspx" class="icon">
             <i class="bx bx-user"></i>
           </a>
           <div class="icon">
@@ -104,9 +103,11 @@
                     <label>Password</label>
                      <asp:TextBox ID="tbPassword" runat="server"  type="password"></asp:TextBox>
                 </div>
-            
+     
                 <br/>
-               <asp:Button ID="Boton_Login" class="btn waves-effect waves-light" runat="server" Text="Submit" OnClick="Boton_Login_Click" />
+                <asp:Button ID="Boton_Login" class="btn waves-light" runat="server" Text="Submit" OnClick="Boton_Login_Click"/>
+                <%--<asp:Button ID="Boton_Login" class="btn waves-effect waves-light" runat="server" Text="Submit" OnClick="Boton_Login_Click" ViewStateMode="Enabled" />--%>
+
                 <br />
             </form>
         </div>
@@ -124,21 +125,16 @@
           <a href="">About us</a>
           <a href="">Contact Us</a>
           <a href="">Term & Conditions</a>
-          <a href="">Shipping Guide</a>
         </div>
         <div class="col d-flex">
           <h4>USEFUL LINK</h4>
-          <a href="">Online Store</a>
-          <a href="">Customer Services</a>
-          <a href="">Promotion</a>
-          <a href="">Top Brands</a>
+          <a href="">Events</a>
+          <a href="">Maps</a>
+          
         </div>
         <div class="col d-flex">
-          <span><i class="bx bxl-facebook-square"></i></span>
-          <span><i class="bx bxl-instagram-alt"></i></span>
           <span><i class="bx bxl-github"></i></span>
-          <span><i class="bx bxl-twitter"></i></span>
-          <span><i class="bx bxl-pinterest"></i></span>
+          <span><i class="bx bxl-linkedin"></i></span>
         </div>
       </div>
     </footer>
@@ -178,6 +174,12 @@ a {
 
 li {
   list-style: none;
+}
+
+#Boton_Login{
+    width:100px;
+    text-align:center;
+
 }
 
 /* 

@@ -105,6 +105,15 @@ namespace TrabajoFinGrado
         protected global::System.Web.UI.WebControls.TextBox tbEmail;
 
         /// <summary>
+        /// Control Boton_Cancelar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Boton_Cancelar;
+
+        /// <summary>
         /// Control Boton_Registro.
         /// </summary>
         /// <remarks>
