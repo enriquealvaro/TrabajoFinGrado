@@ -34,34 +34,69 @@ namespace TrabajoFinGrado
 
             // Asigna el código HTML generado a un control de ASP.NET
             Productos.Text = html;
+            cmd.Connection.Close();
         }
 
         protected void Boton_Search_Click(object sender, EventArgs e)
         {
-
             String fecha_eventos = Convert.ToString(fecha_evento_id.Text);
-            System.Diagnostics.Debug.WriteLine(fecha_eventos);
-            string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
-            SqlConnection sqlConectar = new SqlConnection(conectar);
-            // Crea una nueva instancia de SqlCommand y especifica que es un procedimiento almacenado
-            SqlCommand cmd = new SqlCommand("BP_BUSCAR_PRODCUTOS", sqlConectar);
-            cmd.Parameters.Add("@SEARCH", SqlDbType.VarChar, 1000).Value = SearchBoxId.Text;
-            cmd.Parameters.Add("@FECHA_EVENTO", SqlDbType.VarChar, 100).Value = fecha_eventos;
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Connection.Open();
+            String search = Convert.ToString(SearchBoxId.Text);
 
-            // Ejecuta el procedimiento almacenado y obtiene el código HTML generado
-            string html = "";
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            //BUSCAR POR FECHA
+            if (fecha_eventos != "" && search== "")
             {
-                while (reader.Read())
+                System.Diagnostics.Debug.WriteLine(fecha_eventos);
+                string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+                SqlConnection sqlConectar = new SqlConnection(conectar);
+                // Crea una nueva instancia de SqlCommand y especifica que es un procedimiento almacenado
+                SqlCommand cmd = new SqlCommand("BUSQUEDA_POR_FECHA", sqlConectar);
+                cmd.Parameters.Add("@FECHA_EVENTO", SqlDbType.VarChar, 100).Value = fecha_eventos;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection.Open();
+
+                // Ejecuta el procedimiento almacenado y obtiene el código HTML generado
+                string html = "";
+                using (SqlDataReader reader2 = cmd.ExecuteReader())
                 {
-                    html += reader.GetString(0);
+                    while (reader2.Read())
+                    {
+                        html += reader2.GetString(0);
+                    }
                 }
+
+                // Asigna el código HTML generado a un control de ASP.NET
+                Productos.Text = html;
+                cmd.Connection.Close();
+                //BUSCAR POR TEXTO
+            }
+            else if ((fecha_eventos == "" && search != "") || (fecha_eventos != "" && search != ""))
+            {
+                System.Diagnostics.Debug.WriteLine(fecha_eventos);
+                string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+                SqlConnection sqlConectar = new SqlConnection(conectar);
+                // Crea una nueva instancia de SqlCommand y especifica que es un procedimiento almacenado
+                SqlCommand cmd = new SqlCommand("BUSCAR_PRODCUTOS", sqlConectar);
+                cmd.Parameters.Add("@SEARCH", SqlDbType.VarChar, 1000).Value = search;
+                //cmd.Parameters.Add("@FECHA_EVENTO", SqlDbType.VarChar, 100).Value = fecha_eventos;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection.Open();
+
+                // Ejecuta el procedimiento almacenado y obtiene el código HTML generado
+                string html = "";
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        html += reader.GetString(0);
+                    }
+                }
+
+                // Asigna el código HTML generado a un control de ASP.NET
+                Productos.Text = html;
+                cmd.Connection.Close();
+
             }
 
-            // Asigna el código HTML generado a un control de ASP.NET
-            Productos.Text = html;
         }
     }
 }
