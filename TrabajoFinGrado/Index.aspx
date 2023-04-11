@@ -101,9 +101,13 @@
     </div>
         </form>
 
-    <div id="productos">
+    <div id="productos" >
         <asp:Label ID="Productos" runat="server" Text=""></asp:Label>
     </div>
+
+    
+    <asp:Label ID="exportarId" runat="server" Text="" visible ="false"></asp:Label>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="row">
@@ -136,6 +140,15 @@
         });
     }
 </script>
+
+    <script>
+
+        function eventDetails(obj) {    
+            var id = obj.id;
+            document.getElementById('exportarId').innerHTML = id;
+
+        }
+    </script>
 </html>
 
 <style>
@@ -476,16 +489,10 @@
                 transform-origin: left;
             }
 
-            .button a:hover {
-                color: #fff;
-                transition: all 0.5s ease;
-            }
+        
 
 
-            .button a:nth-of-type(1) {
-                border-radius: 50px 0 0 50px;
-                border-right: none;
-            }
+
 
             .button a:nth-of-type(2) {
                 border-radius: 0px 50px 50px 0;

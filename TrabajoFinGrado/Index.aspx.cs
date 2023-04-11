@@ -35,7 +35,8 @@ namespace TrabajoFinGrado
             // Asigna el código HTML generado a un control de ASP.NET
             Productos.Text = html;
             cmd.Connection.Close();
-        }
+
+
 
         protected void Boton_Search_Click(object sender, EventArgs e)
         {
