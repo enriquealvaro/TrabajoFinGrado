@@ -13,9 +13,10 @@
     <script src="js/materialize.js"></script>
     <script src="js/materialize.min.js"></script>
     <script src="js/nav.js"></script>
+    
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
-
 
 <body>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -99,14 +100,17 @@
             
         </div>
     </div>
-        </form>
+        
 
     <div id="productos" >
         <asp:Label ID="Productos" runat="server" Text=""></asp:Label>
     </div>
 
-    
-    <asp:Label ID="exportarId" runat="server" Text="" visible ="false"></asp:Label>
+    <asp:Label ID="exportarId" runat="server" Text="" ></asp:Label>
+    <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
+
+</form>
+
 
     <!-- Footer -->
     <footer class="footer">
@@ -145,7 +149,9 @@
 
         function eventDetails(obj) {    
             var id = obj.id;
-            document.getElementById('exportarId').innerHTML = id;
+            var url = '<%= ResolveUrl("~/EventDetails.aspx") %>?id=' + encodeURIComponent(id);
+            window.location.href = url;
+
 
         }
     </script>

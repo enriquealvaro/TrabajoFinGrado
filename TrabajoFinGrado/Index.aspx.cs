@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -36,7 +37,7 @@ namespace TrabajoFinGrado
             Productos.Text = html;
             cmd.Connection.Close();
 
-
+        }
 
         protected void Boton_Search_Click(object sender, EventArgs e)
         {
@@ -46,7 +47,7 @@ namespace TrabajoFinGrado
             //BUSCAR POR FECHA
             if (fecha_eventos != "" && search== "")
             {
-                System.Diagnostics.Debug.WriteLine(fecha_eventos);
+                //System.Diagnostics.Debug.WriteLine(fecha_eventos);
                 string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
                 SqlConnection sqlConectar = new SqlConnection(conectar);
                 // Crea una nueva instancia de SqlCommand y especifica que es un procedimiento almacenado
@@ -78,7 +79,6 @@ namespace TrabajoFinGrado
                 // Crea una nueva instancia de SqlCommand y especifica que es un procedimiento almacenado
                 SqlCommand cmd = new SqlCommand("BUSCAR_PRODCUTOS", sqlConectar);
                 cmd.Parameters.Add("@SEARCH", SqlDbType.VarChar, 1000).Value = search;
-                //cmd.Parameters.Add("@FECHA_EVENTO", SqlDbType.VarChar, 100).Value = fecha_eventos;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection.Open();
 
@@ -99,5 +99,17 @@ namespace TrabajoFinGrado
             }
 
         }
+
+
+        [WebMethod]
+        public static void Redireccionar()
+        {
+            string url = "EventDetails.aspx";
+            HttpContext.Current.Response.Redirect(url);
+        }
+
+
+
+
     }
 }
