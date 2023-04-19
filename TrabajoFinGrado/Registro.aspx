@@ -340,7 +340,7 @@ Navigation
         position: relative;
         top: 50%;
         left: 50%;
-        width: 80%;
+        width: 90%;
         max-width: 400px;
         padding: 40px;
         transform: translate(-50%);

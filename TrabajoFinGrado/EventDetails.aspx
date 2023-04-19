@@ -188,6 +188,7 @@
   font-size: 4rem;
   line-height: 1.2;
   margin-bottom: 2rem;
+  margin-top: -3rem;
 }
 
 .product-detail .right .price {
