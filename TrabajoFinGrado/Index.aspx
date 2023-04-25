@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
     <script src="js/materialize.js"></script>
     <script src="js/materialize.min.js"></script>
-    <script src="js/nav.js"></script>
+    
     
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -45,7 +45,7 @@
                     <a href="product.html" class="nav-link">Events</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#terms" class="nav-link">Maps</a>
+                    <a href="Maps.aspx" class="nav-link">Maps</a>
                 </li>
                 <li class="nav-item">
                     <a href="#about" class="nav-link">About</a>
@@ -158,6 +158,8 @@
 </html>
 
 <style>
+
+
     /*SEARCH BOX*/
     .search-container {
         width: 300px;

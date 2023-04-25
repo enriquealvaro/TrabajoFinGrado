@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace TrabajoFinGrado
@@ -40,6 +41,37 @@ namespace TrabajoFinGrado
             // Asigna el código HTML generado a un control de ASP.NET
             Productos.Text = html;
             cmd.Connection.Close();
+
+
+            string conectar2 = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+            SqlConnection sqlConectar2 = new SqlConnection(conectar);
+            // Crea una nueva instancia de SqlCommand y especifica que es un procedimiento almacenado
+            SqlCommand cmd2 = new SqlCommand("ADD_EVENTS_DETAIL", sqlConectar);
+            cmd2.Parameters.Add("@ID_EVENTO", SqlDbType.Int).Value = parametro;
+            cmd2.CommandType = CommandType.StoredProcedure;
+            cmd2.Connection.Open();
+
+
+            // Ejecuta el procedimiento almacenado y obtiene el código HTML generado
+            string textoScript = "";
+            using (SqlDataReader reader = cmd2.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    textoScript += reader.GetString(0);
+                }
+            }
+
+            // Asigna el código HTML generado a un control de ASP.NET
+            cmd2.Connection.Close();
+            HtmlGenericControl script = new HtmlGenericControl("script");
+            script.Attributes.Add("type", "text/javascript");
+            script.InnerHtml = textoScript;
+
+            Page.Controls.Add(script);
+
+
+
 
         }
     }

@@ -38,10 +38,10 @@
             <a href="Index.aspx" class="nav-link">Home</a>
           </li>
           <li class="nav-item">
-            <a href="product.html" class="nav-link">Events</a>
+            <a href="Index.aspx" class="nav-link">Events</a>
           </li>
           <li class="nav-item">
-            <a href="#terms" class="nav-link">Maps</a>
+            <a href="Maps.aspx" class="nav-link">Maps</a>
           </li>
           <li class="nav-item">
             <a href="#about" class="nav-link">About</a>

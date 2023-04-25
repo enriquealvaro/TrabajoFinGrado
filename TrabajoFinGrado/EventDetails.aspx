@@ -13,7 +13,7 @@
     <script src="js/materialize.js"></script>
     <script src="js/materialize.min.js"></script>
     <script src="js/nav.js"></script>
-    
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApvvXLJ_vd36K4-KVLA4BxUzssrwdu2W0"></script>
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
@@ -92,6 +92,10 @@
     <div id="productos" >
         <asp:Label ID="Productos" runat="server" Text=""></asp:Label>
     </div>
+    <form id="form1">
+            <div id="map" style="height: 400px; width:70%"></div>
+    </form>
+
 
     <footer class="footer">
         <div class="row">
@@ -127,7 +131,12 @@
 
 </html>
 <style>
-
+        #form1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 50px;
+    }
     html {
         box-sizing: border-box;
         font-size: 62.5%;
