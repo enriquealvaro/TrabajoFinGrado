@@ -72,9 +72,7 @@
                 <a href="Perfil.aspx" class="icon">
                     <i class="bx bx-user"></i>
                 </a>
-                <div class="icon">
-                    <i class="bx bx-search"></i>
-                </div>
+                
 
                 <a href="cart.html" class="icon">
                     <i class="bx bx-cart"></i>
@@ -166,6 +164,7 @@
         justify-content: center;
         display: grid;
         grid-template-columns: auto auto;
+        padding-left: 12%;
     }
 
     .input {
@@ -430,7 +429,7 @@
         img {
             position: absolute;
             top: 0px;
-            right: -100px;
+            right: -60px;
             z-index: 0;
             animation-delay: 0.5s;
             filter: opacity(0.65);

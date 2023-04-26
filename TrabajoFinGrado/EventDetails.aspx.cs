@@ -70,7 +70,28 @@ namespace TrabajoFinGrado
 
             Page.Controls.Add(script);
 
+            string conectar3 = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+            SqlConnection sqlConectar3 = new SqlConnection(conectar);
+            // Crea una nueva instancia de SqlCommand y especifica que es un procedimiento almacenado
+            SqlCommand cmd3 = new SqlCommand("GENERAR_PRODCUTOS_RELACIONADOS", sqlConectar);
+            cmd3.Parameters.Add("@ID", SqlDbType.Int).Value = parametro;
+            cmd3.CommandType = CommandType.StoredProcedure;
+            cmd3.Connection.Open();
 
+
+            // Ejecuta el procedimiento almacenado y obtiene el código HTML generado
+            string html2 = "";
+            using (SqlDataReader reader = cmd3.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    html2 += reader.GetString(0);
+                }
+            }
+
+            // Asigna el código HTML generado a un control de ASP.NET
+            ProductosRelacionados.Text = html2;
+            cmd3.Connection.Close();
 
 
         }
