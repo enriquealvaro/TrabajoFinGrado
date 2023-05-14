@@ -15,6 +15,16 @@ namespace TrabajoFinGrado
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+            string nombreUsuario = (string)Session["usuarioLogueado"];
+            if(nombreUsuario == "admin")
+            {
+                Button2.Visible = true;
+            }
+            else
+            {
+                Button2.Visible = false;
+            }
             string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
             SqlConnection sqlConectar = new SqlConnection(conectar);
             // Crea una nueva instancia de SqlCommand y especifica que es un procedimiento almacenado
@@ -41,6 +51,7 @@ namespace TrabajoFinGrado
 
         protected void Boton_Search_Click(object sender, EventArgs e)
         {
+
             String fecha_eventos = Convert.ToString(fecha_evento_id.Text);
             String search = Convert.ToString(SearchBoxId.Text);
 
@@ -98,8 +109,16 @@ namespace TrabajoFinGrado
 
             }
 
+
+
+
         }
 
+        protected void Boton_Add_Click(object sender, EventArgs e)
+        {
+            string url = "AddEvents.aspx";
+            HttpContext.Current.Response.Redirect(url);
+        }
 
         [WebMethod]
         public static void Redireccionar()

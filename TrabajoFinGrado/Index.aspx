@@ -95,8 +95,10 @@
             <asp:TextBox id="fecha_evento_id" type="date" class="datepicker" runat="server"></asp:TextBox>
                 </div>
             <asp:Button ID="Boton_Search" class="btn waves-light"  runat="server" Text="Buscar" OnClick="Boton_Search_Click"/>
-            
+            <asp:Button ID="Button2" class="btn waves-light"  runat="server" Text="Añadir Evento" OnClick="Boton_Add_Click"/>
+
         </div>
+
     </div>
         
 
