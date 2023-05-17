@@ -45,46 +45,39 @@ namespace TrabajoFinGrado
                 Response.Redirect("Login.aspx");
 
             }
-            
 
-            
+
+
         }
 
-        protected void Actualizar_Click(object sender, EventArgs e)
+        protected void Vaciar_Click(object sender, EventArgs e)
         {
+            string nombreUsuario = (string)Session["usuarioLogueado"];
 
-            //if (IsPostBack)
-            //{
+            
+            string cadenaConexion = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
+            using (SqlConnection connection = new SqlConnection(cadenaConexion))
+            {
+                connection.Open();
 
-            //    string nombreUsuario = (string)Session["usuarioLogueado"];
-            //    int numFilas = Request.Form.Count / 2;
-            //    for (int i = 1; i <= numFilas; i++)
-            //    {
-            //        string cantidadFieldName = "cantidad_" + i;
-            //        string cantidadValue = Request.Form[cantidadFieldName];
+                string sql = "DELETE FROM Entradas WHERE USERNAME = '" + nombreUsuario + "'";
 
-            //        // Obtener el nombre de la columna "NOMBRE" correspondiente al campo de cantidad
-            //        string nombreColumnName = "nombre_" + i;
-            //        string nombreValue = Request.Form[nombreColumnName];
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
 
-            //        // Realizar la actualización en la base de datos utilizando los valores recogidos
-            //        // Ejemplo de actualización en la base de datos utilizando ADO.NET:
-            //        string connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
-            //        using (SqlConnection connection = new SqlConnection(connectionString))
-            //        {
-            //            string updateQuery = "UPDATE Entradas SET CANTIDAD_ENTRADAS = @Cantidad WHERE Nombre = '" + nombreValue + "' AND USERNAME =" + nombreUsuario;
-            //            SqlCommand command = new SqlCommand(updateQuery, connection);
-            //            command.Parameters.AddWithValue("@Cantidad", cantidadValue);
-            //            command.Parameters.AddWithValue("@Nombre", nombreUsuario);
-            //            connection.Open();
-            //            command.ExecuteNonQuery();
-            //        }
-            //    }
-            //}
-        }
+            }
+            string url = "CarroCompras.aspx";
+            HttpContext.Current.Response.Redirect(url);
 
         }
-    
 
+        protected void Comprar_Click(object sender, EventArgs e)
+        {
+            string url = "Pago.aspx";
+            HttpContext.Current.Response.Redirect(url);
+        }
+    }
 }

@@ -109,6 +109,7 @@ namespace TrabajoFinGrado
                 string nombre = "";
                 string precio = "";
                 string sql = "SELECT NOMBRE, PRECIO FROM eventos WHERE ID_EVENTO = " + parametro;
+                //Leemos de la bbdd el nombre y el precio del evento
                 using (SqlConnection connection = new SqlConnection(conectar))
                 {
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -131,14 +132,16 @@ namespace TrabajoFinGrado
                 SqlConnection conexion = new SqlConnection(strCon);
                 SqlCommand cmd;
                 conexion.Open();
+                //Añadimos a la tabla la infromación de las entradas
                 cmd = new SqlCommand();
                 sql = "EXEC ADD_ENTRADAS '" + cantidad.ToString() + "','" + nombreUsuario.ToString() + "','" + nombre.ToString() + "','" + precio.ToString() + "'";
                 cmd.CommandText = sql;
                 cmd.Connection = conexion;
                 cmd.ExecuteNonQuery();
                 conexion.Close();
-                string script = "alert('¡Evento Añadido!');";
-                Thread.Sleep(1500);
+                //Añadimos un alert desde aquí, por que sino al darle al botón se ejecuta antes el alert que el procedimiento
+                // y no se sabe si se ejecuta bien el procedimiento
+                string script = "alert('¡Evento Añadido al carrito!');";
                 ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
             }
             else

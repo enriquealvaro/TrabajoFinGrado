@@ -1,25 +1,27 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CarroCompras.aspx.cs" Inherits="TrabajoFinGrado.CarroCompras" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Pago.aspx.cs" Inherits="TrabajoFinGrado.Pago" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <script src="Scripts/carrito.js"></script>
-        <link rel="stylesheet" type="text/css" href="Style/materialize.css" />
+    <%--<link rel="stylesheet" type="text/css" href="Style/LoginStyle.css" />--%>
+    <link rel="stylesheet" type="text/css" href="Style/materialize.css" />
     <link rel="stylesheet" type="text/css" href="Style/materialize.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
     <script src="js/materialize.js"></script>
     <script src="js/materialize.min.js"></script>
-
+    <script src="js/nav.js"></script>
 </head>
+
+
 <body>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Navigation -->
     <div class="top-nav">
         <div class="container-top d-flex">
-            <p id="p">Trabajo final de grado DAM-Dual Enrique Álvaro Escobar</p>
+            <p>Trabajo final de grado DAM-Dual Enrique Álvaro Escobar</p>
             <ul class="d-flex">
                 <li><a href="#">About Us</a></li>
                 <li><a href="#">FAQ</a></li>
@@ -41,7 +43,7 @@
                     <a href="product.html" class="nav-link">Events</a>
                 </li>
                 <li class="nav-item">
-                    <a href="Maps.aspx" class="nav-link">Maps</a>
+                    <a href="#terms" class="nav-link">Maps</a>
                 </li>
                 <li class="nav-item">
                     <a href="#about" class="nav-link">About</a>
@@ -50,7 +52,7 @@
                     <a href="#contact" class="nav-link">Contact</a>
                 </li>
                 <li class="icons d-flex">
-                    <a href="Perfil.aspx" class="icon">
+                    <a href="Index.aspx" class="icon">
                         <i class="bx bx-user"></i>
                     </a>
                     <div class="icon">
@@ -68,7 +70,9 @@
                 <a href="Perfil.aspx" class="icon">
                     <i class="bx bx-user"></i>
                 </a>
-                
+                <div class="icon">
+                    <i class="bx bx-search"></i>
+                </div>
 
                 <a href="cart.html" class="icon">
                     <i class="bx bx-cart"></i>
@@ -76,23 +80,50 @@
                 </a>
             </div>
 
-            <div class="hamburger">
+            <div runat="server" class="hamburger">
                 <i class="bx bx-menu-alt-left"></i>
             </div>
         </div>
     </div>
+    <!-- Login -->
+    <div class="container">
+        <div class="login-box">
+            <h3>Pago con tarjeta</h3>
+            <form runat="server">
+                <asp:Label runat="server" ID="lblAcierto" ForeColor="Green"></asp:Label>
+                <asp:Label runat="server" ID="lblError" ForeColor="Red"></asp:Label>
+                <div runat="server" id="theDiv">
+                    <div class="user-box">
+                        <label>Nº Tarjeta</label>
+                        <asp:TextBox ID="tbTarjeta" runat="server" placeholder="0000 0000 0000 0000"></asp:TextBox>
+                    </div>
+                    <div class="user-box">
+                        <label>Fecha caducidad</label>
+                        <br />
+                        <br />
+                        <asp:TextBox runat="server" ID="tbmonth" type="month" placeholder="MM" />
+                        <br />
+                        <br />
+                    </div>
+                    <div class="user-box">
+                        <label>CVC</label>
+                        <asp:TextBox ID="tbCvc" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="user-box">
+                        <asp:Label ID="precioTot" runat="server" Text="" Font-Bold="true"></asp:Label>
+                        <br /><br />
+                        <asp:Button class="ok-button"  type="submit" runat="server" onClick="Pagar_Click" Text="Comprar" />
 
-    <div id="productos">
-        <asp:Label ID="Productos" runat="server" Text=""></asp:Label>
-        <div class="grid-containers">
-<form runat="server">
-    <asp:Button class="delete-button" OnClick="Vaciar_Click" runat="server" Text="Vaciar Carrito" />
-    <asp:Button class="ok-button"  type="submit" runat="server" OnClick="Comprar_Click" Text="Comprar" />
+                    </div>
 
-</form>
-</div>
+                </div>
+
+            </form>
+        </div>
     </div>
- <!-- Footer -->
+
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="row">
             <div class="col d-flex">
@@ -124,9 +155,20 @@
         });
     }
 </script>
-    </html>
+</html>
+
+
 <style>
-    /******************************************/
+        .ok-button {
+        padding: 10px 20px;
+        background-color: #00ff2f;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+
     html {
         box-sizing: border-box;
         font-size: 62.5%;
@@ -272,7 +314,6 @@ Navigation
             display: block;
             color: black;
             font-size: 3rem;
-            padding-top: 17px;
         }
 
         .icons {
@@ -299,7 +340,29 @@ Navigation
         }
     }
 
+    .login-box {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        width: 90%;
+        max-width: 400px;
+        padding: 40px;
+        transform: translate(-50%);
+        background: rgb(255, 255, 255);
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(212, 212, 212, 1);
+        border-radius: 15px;
+    }
 
+    img {
+        position: absolute;
+        top: 20%;
+        left: 45%;
+        width: 80%;
+        max-width: 300px;
+        padding: 40px;
+        transform: translate(-50%, -50%);
+    }
 
     h3 {
         /*margin y padding para cuadrar el texto */
@@ -310,6 +373,33 @@ Navigation
         text-align: center;
     }
 
+    .login-box .user-box {
+        position: relative;
+    }
+
+    /*mofidicamos los inputs para introducir username y psw*/
+    #tbUsuario, #tbPassword, #tbApellidos, #tbNombre, #tbEmail, #tbPasswordConfirmed {
+        /*edita anchura del input*/
+        width: 100%;
+        /*espacio entre inputs*/
+        padding: 5px 0;
+        font-size: 15px;
+        margin-bottom: 20px;
+        /*le quitamos el border a los inputs para que esten chulos*/
+        border: none;
+        /*para que al escirbir no se vean bordes*/
+        outline: none;
+        /*ponemos el borde de abajo nada mas*/
+        border-bottom: 1px solid #26a69a;
+        color: rgb(0, 0, 0);
+        /*fondo del input transparente, mas chulito*/
+        background: transparent;
+    }
+
+    .Registrarse {
+        color: #26a69a;
+        font-size: 20%;
+    }
 
     label {
         font-size: 16px;
@@ -351,45 +441,12 @@ Navigation
         .footer .col h4 {
             margin-bottom: 1rem;
         }
-    .delete-button {
-        padding: 10px 20px;
-        background-color: #ff0000;
-        color: #ffffff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    .ok-button {
-        padding: 10px 20px;
-        background-color: #00ff2f;
-        color: #ffffff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
 
-    .grid-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    @media only screen and (max-width: 567px) {
+        footer .row {
+            grid-template-columns: 1fr;
+            row-gap: 3rem;
+        }
     }
-    .grid-containers {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-top: 2%;
-    padding-bottom: 2%;
-    }
-    .table{
-              width:70%;
-          }
-    .cantidad{
-        width:40%;
-    }
-   #number{
-  width: 20%;
-}
-   th{
-       text-align:center;
-   }
 </style>
+
