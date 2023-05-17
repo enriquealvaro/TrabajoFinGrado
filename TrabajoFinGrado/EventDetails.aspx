@@ -15,22 +15,21 @@
     <script src="js/nav.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApvvXLJ_vd36K4-KVLA4BxUzssrwdu2W0"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-
-        function eventDetails(obj) {
-            var id = obj.id;
-            var url = '<%= ResolveUrl("~/EventDetails.aspx") %>?id=' + encodeURIComponent(id);
-            window.location.href = url;
 
 
-        }
-    </script>
 </head>
 
 <body>
+
+    <script>
+        function addCarrito() {
+            console.log("hola");
+        }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Navigation -->
     <div class="top-nav">
+
         <div class="container-top d-flex">
             <p id="p">Trabajo final de grado DAM-Dual Enrique Álvaro Escobar</p>
             <ul class="d-flex">
@@ -97,8 +96,22 @@
 
 
     <div id="productos">
-        <asp:Label ID="Productos" runat="server" Text=""></asp:Label>
+        <asp:Label ID="Productos" runat="server" Text=""></asp:Label>      
     </div>
+     <div class="grid-containerr">
+        <form runat="server">
+            <div class="rowk">
+            <asp:TextBox runat="server" ID="txtNumber" type="number" min="1" max ="10" />
+            </div>
+            <div class="rowk">
+             <asp:Button class="addCart" runat="server" Text="Add To Cart" OnClick="AddCarrito_Click" Visible="true" />
+            </div>
+        </form>
+    </div>
+
+            
+	          
+
     <form id="form1">
         <div id="map" style="height: 400px; width: 70%"></div>
         <br />
@@ -110,6 +123,8 @@
     <div id="productosRelacionados">
         <asp:Label ID="ProductosRelacionados" runat="server" Text=""></asp:Label>
     </div>
+
+
 
 
     <footer class="footer">
@@ -145,8 +160,24 @@
 </script>
 
 
+
+
 </html>
 <style>
+    .rowk{
+        
+  flex: 1;
+  padding: 10px;
+
+    }
+            .grid-containerr {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            gap: 0px;
+            height: 100%;
+            padding-bottom: 20px;
+        }
     #text {
         display: flex;
         justify-content: left;
@@ -570,6 +601,13 @@
             border-radius: 3rem;
         }
 
+        .addCart {
+            background: #4caf50;
+            padding: 0.8rem 4rem;
+            color: #000;
+            border-radius: 3rem;
+        }
+
     .product-detail h3 {
         margin-bottom: 2rem;
     }
@@ -760,7 +798,6 @@ Navigation
 
     h3 {
         /*margin y padding para cuadrar el texto */
-        margin: 0 0 30px;
         padding: 0;
         /*color y alineacion del texto*/
         color: rgb(0, 0, 0);

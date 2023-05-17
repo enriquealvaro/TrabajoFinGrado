@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
@@ -92,6 +93,60 @@ namespace TrabajoFinGrado
             // Asigna el código HTML generado a un control de ASP.NET
             ProductosRelacionados.Text = html2;
             cmd3.Connection.Close();
+
+
+        }
+
+        protected void AddCarrito_Click(object sender, EventArgs e)
+        {
+            if (Session["usuariologueado"] != null)
+            {
+                string cantidad = txtNumber.Text;
+                string nombreUsuario = (string)Session["usuarioLogueado"];
+                string parametro = Request.QueryString["id"];
+                Session["id"] = parametro;
+                string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+                string nombre = "";
+                string precio = "";
+                string sql = "SELECT NOMBRE, PRECIO FROM eventos WHERE ID_EVENTO = " + parametro;
+                using (SqlConnection connection = new SqlConnection(conectar))
+                {
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        connection.Open();
+
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            nombre = reader["NOMBRE"].ToString();
+                            precio = reader["PRECIO"].ToString();
+                        }
+
+                        reader.Close();
+                    }
+                }
+                string cadenaConexion = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+                string strCon = cadenaConexion;
+                SqlConnection conexion = new SqlConnection(strCon);
+                SqlCommand cmd;
+                conexion.Open();
+                cmd = new SqlCommand();
+                sql = "EXEC ADD_ENTRADAS '" + cantidad.ToString() + "','" + nombreUsuario.ToString() + "','" + nombre.ToString() + "','" + precio.ToString() + "'";
+                cmd.CommandText = sql;
+                cmd.Connection = conexion;
+                cmd.ExecuteNonQuery();
+                conexion.Close();
+                string script = "alert('¡Evento Añadido!');";
+                Thread.Sleep(1500);
+                ClientScript.RegisterStartupScript(this.GetType(), "AlertScript", script, true);
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+
+            }
+
 
 
         }

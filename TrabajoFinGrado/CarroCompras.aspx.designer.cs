@@ -11,7 +11,7 @@ namespace TrabajoFinGrado
 {
 
 
-    public partial class EventDetails
+    public partial class CarroCompras
     {
 
         /// <summary>
@@ -22,23 +22,5 @@ namespace TrabajoFinGrado
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Productos;
-
-        /// <summary>
-        /// Control txtNumber.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNumber;
-
-        /// <summary>
-        /// Control ProductosRelacionados.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ProductosRelacionados;
     }
 }
