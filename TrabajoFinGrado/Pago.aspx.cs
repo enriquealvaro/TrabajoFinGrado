@@ -7,6 +7,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace TrabajoFinGrado
 {
@@ -66,7 +69,7 @@ namespace TrabajoFinGrado
             string fecha_cad = tbmonth.Text;
             string cvc = tbCvc.Text;
 
-            if(nombreUsuario!="" && precioTotal != "" & num_tarjeta != "" && fecha_cad !="" && cvc != "")
+            if (nombreUsuario != "" && precioTotal != "" & num_tarjeta != "" && fecha_cad != "" && cvc != "")
             {
                 string conectar = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
@@ -88,6 +91,7 @@ namespace TrabajoFinGrado
                         command.Parameters.AddWithValue("@CVC", cvc);
                         command.Parameters.AddWithValue("@TOT", precioTotal);
                         command.Parameters.AddWithValue("@USERNAME", nombreUsuario);
+
                         // Agrega más parámetros según sea necesario
 
                         // Ejecutar el procedimiento almacenado
@@ -99,18 +103,111 @@ namespace TrabajoFinGrado
                     tbmonth.Text = "";
                     tbTarjeta.Text = "";
 
+                    
+
+                    string nombre_evento = "";
+                    string cantidad_entradas = "";
+                    string selectQuery = "SELECT NOMBRE_EVENTO FROM Entradas WHERE USERNAME = @NombreUsuario";
+
+                    using (SqlCommand command = new SqlCommand(selectQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                if (!reader.IsDBNull(0))
+                                {
+                                    nombre_evento = reader.GetString(0);
+                                }
+                            }
+                        }
+                    }
+
+                    string selectQuery2 = "SELECT CANTIDAD_ENTRADAS FROM Entradas WHERE USERNAME = @NombreUsuario AND NOMBRE_EVENTO = @NombreEvento ";
+
+                    using (SqlCommand command = new SqlCommand(selectQuery2, connection))
+                    {
+                        command.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
+                        command.Parameters.AddWithValue("@NombreEvento", nombre_evento);
+
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                if (!reader.IsDBNull(0))
+                                {
+                                    cantidad_entradas = reader.GetString(0);
+                                }
+                            }
+                        }
+                    }
+
+                    // Cerrar la conexión
+
+                    string rutaRelativa = "~/images/plantilla.pdf";
+                    string rutaVirtual = VirtualPathUtility.ToAbsolute(rutaRelativa);
+
+                    // Ruta de la plantilla PDF
+                    string plantillaPdfPath = Server.MapPath(rutaVirtual);
+                    precioTotal = precioTotal + " €";
+                    // Crear el PDF de salida en memoria
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        // Cargar la plantilla PDF
+                        using (PdfReader pdfReader = new PdfReader(plantillaPdfPath))
+                        {
+                            // Crear el PDF de salida
+                            using (PdfStamper pdfStamper = new PdfStamper(pdfReader, ms))
+                            {
+                                AcroFields formFields = pdfStamper.AcroFields;
+
+                                // Rellenar los campos de la plantilla con los valores deseados
+                                formFields.SetField("username", nombreUsuario);
+                                formFields.SetField("nombre_c", nombre_evento);
+                                formFields.SetField("cant_entradas", cantidad_entradas);
+                                formFields.SetField("precio", precioTotal);
+
+
+                                // Agregar más campos y valores según sea necesario
+
+                                // Guardar y cerrar el PDF de salida
+                                pdfStamper.FormFlattening = true;
+                            }
+                        }
+
+                        // Obtener el contenido del MemoryStream
+                        byte[] contenidoPDF = ms.ToArray();
+
+                        // Descargar el PDF generado
+                        Response.Clear();
+                        Response.ContentType = "application/pdf";
+                        //Response.AppendHeader("Content-Disposition", "attachment; filename=Entradas.pdf");
+
+                        // Especificar que el archivo PDF se descargará en lugar de mostrarse en el navegador
+                        //Response.AppendHeader("Content-Length", contenidoPDF.Length.ToString());
+                        Response.BinaryWrite(contenidoPDF);
+                        Response.End();
+
                         string sql = "DELETE FROM Entradas WHERE USERNAME = '" + nombreUsuario + "'";
 
                         using (SqlCommand command = new SqlCommand(sql, connection))
                         {
                             command.ExecuteNonQuery();
                         }
-                    // Cerrar la conexión
+                        connection.Close();
 
-                    connection.Close();
+
+                    }
+
                 }
+
             }
-            else
+            
+            
+           else
             {
                 lblError.Text = "Campos Vacios";
                 lblAcierto.Text = "";
