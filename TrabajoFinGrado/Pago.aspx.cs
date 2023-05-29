@@ -145,8 +145,7 @@ namespace TrabajoFinGrado
                         }
                     }
 
-                    // Cerrar la conexión
-
+                    //Añadir rutas
                     string rutaRelativa = "~/images/plantilla.pdf";
                     string rutaVirtual = VirtualPathUtility.ToAbsolute(rutaRelativa);
 
@@ -164,14 +163,13 @@ namespace TrabajoFinGrado
                             {
                                 AcroFields formFields = pdfStamper.AcroFields;
 
-                                // Rellenar los campos de la plantilla con los valores deseados
+                                // Rellenar los campos de la plantilla 
                                 formFields.SetField("username", nombreUsuario);
                                 formFields.SetField("nombre_c", nombre_evento);
                                 formFields.SetField("cant_entradas", cantidad_entradas);
                                 formFields.SetField("precio", precioTotal);
 
 
-                                // Agregar más campos y valores según sea necesario
 
                                 // Guardar y cerrar el PDF de salida
                                 pdfStamper.FormFlattening = true;
@@ -181,7 +179,7 @@ namespace TrabajoFinGrado
                         // Obtener el contenido del MemoryStream
                         byte[] contenidoPDF = ms.ToArray();
 
-                        // Descargar el PDF generado
+                        // Descargar el PDF 
                         Response.Clear();
                         Response.ContentType = "application/pdf";
                         //Response.AppendHeader("Content-Disposition", "attachment; filename=Entradas.pdf");
@@ -214,7 +212,6 @@ namespace TrabajoFinGrado
             }
 
 
-            // Crear la conexión
 
 
 
